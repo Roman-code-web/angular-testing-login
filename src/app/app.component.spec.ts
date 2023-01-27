@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
@@ -9,7 +10,6 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         ReactiveFormsModule,
-        FormsModule
       ],
       declarations: [
         AppComponent
@@ -54,9 +54,43 @@ describe('AppComponent', () => {
     let usuario=app.formLogin.controls['usuario'];
     let password=app.formLogin.controls['password'];
     
-    usuario.setValue('AlondraRoman');
-    password.setValue('1234');
+    usuario?.setValue('AlondraRoman');
+    password?.setValue('1234');
 
     expect(app.formLogin.valid).toBeTruthy();
    })
+   
+   //prueba de boton 
+   it('boton click Ingresar',()=>{
+    const fixture=TestBed.createComponent(AppComponent);
+    const app=fixture.componentInstance;
+    const btnIngresar=fixture.debugElement.query(By.css('.button'));
+    btnIngresar.nativeElement.click();
+    
+    expect(app.mensajelogueado).toEqual('Ingreso');
+   });
+
+   //prueba de mensaje enviado  si el form es valido o invalido comprobamos con console log solo se cambia los valores en el setvalue
+   it('envio de mensaje cuando doy click y form es valido o invalido',()=>{
+    const fixture=TestBed.createComponent(AppComponent);
+    const app=fixture.componentInstance;
+    const btnIngresar=fixture.debugElement.query(By.css('.button'));
+    const usuario=app.formLogin.controls['usuario'];
+    const password=app.formLogin.controls['password'];
+    usuario?.setValue('alondraSelene')
+    password?.setValue('1234')
+    btnIngresar?.nativeElement.click();
+    if(app.formLogin.valid){
+      expect(app.mensajeEnviado).toEqual('Datos enviados correctamente');
+      console.log('---------valido------------');
+      console.log('---------form correcto------------');
+    }else{
+      expect(app.mensajeEnviado).toEqual('');
+      console.log('---------INvalido------------');
+      console.log('---------form incorrecto---------');
+    }
+    
+   })
+
+   
 });

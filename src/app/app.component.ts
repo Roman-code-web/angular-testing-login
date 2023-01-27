@@ -9,16 +9,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AppComponent {
   //Declaro variables
   title = 'Login';
-  formLogin!:FormGroup;
+  formLogin:FormGroup;
   mensajeError={
     usuario:'',
     password:''
   }
   mensajeEnviado!:string;
-
+  mensajelogueado="Ingreso";
   //constructor
   constructor(private frmb : FormBuilder){
-    this.formLogin=frmb.group({
+    this.formLogin=this.frmb.group({
       usuario:['',
       [
         Validators.required,
@@ -41,8 +41,12 @@ export class AppComponent {
       setTimeout(() => {
         this.mensajeEnviado="";
       }, 2000);
+
+    }else{
+      this.mensajeEnviado="";
     }
-    
+    this.mensajelogueado;
+   
   }
  //validacion formulario
   validacion(name: string) {

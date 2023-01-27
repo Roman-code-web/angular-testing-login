@@ -2,14 +2,14 @@
   <div class="container">
     <div class="row d-flex justify-content-center my-5">
         <div class="col-md-6 col-sm-8 col-xs-12 border border-primary">
-          <form class="p-3 mb-3" [formGroup]="formLogin">
+          <form class="p-3 mb-3" [formGroup]="formLogin" name="frm">
             <div class="pb-5">
               <h1 class="text-center">{{title}}</h1>
             </div>
             <!-------usuario---->
             <div class="mb-3">
               <div class="form-floating">
-                <input type="text" class="form-control" id="usuario" placeholder="usuario"  formControlName="usuario" [ngClass]="{'is-invalid':validacion('usuario'), 'is-valid':validacion('usuario')==null}">
+                <input type="text" class="form-control " id="usuario" placeholder="usuario"  formControlName="usuario" [ngClass]="{'is-invalid':validacion('usuario'), 'is-valid':validacion('usuario')==null}">
                 <label for="usuario">usuario</label>
                 <!---error--->
                 <div class="" *ngIf="validacion('usuario')">
@@ -35,7 +35,7 @@
               </div>
             </div>
             <div class="mt-2 d-flex justify-content-center ">
-              <button [disabled]="formLogin.invalid"  class="btn btn-primary w-100"(click)="login()" >Ingresar</button>
+              <button type="button" [disabled]="formLogin.invalid"  class="button btn btn-primary w-100"(click)="login()" >Ingresar</button>
             </div>
           </form>   
         </div>

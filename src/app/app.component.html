@@ -9,7 +9,7 @@
             <!-------usuario---->
             <div class="mb-3">
               <div class="form-floating">
-                <input type="text" class="form-control" id="usuario" placeholder="usuario"  formControlName="usuario">
+                <input type="text" class="form-control" id="usuario" placeholder="usuario"  formControlName="usuario" [ngClass]="{'is-invalid':validacion('usuario'), 'is-valid':validacion('usuario')==null}">
                 <label for="usuario">usuario</label>
                 <!---error--->
                 <div class="" *ngIf="validacion('usuario')">
@@ -20,7 +20,7 @@
              <!-------password---->
             <div class="mb-3">
               <div class="form-floating">
-                <input type="password" class="form-control" id="password" placeholder="password" formControlName="password">
+                <input type="password" class="form-control" id="password" placeholder="password" formControlName="password" [ngClass]="{'is-invalid':validacion('password'), 'is-valid':validacion('password')==null}">
                 <label for="password">password</label>
               </div>
               <!---error--->
